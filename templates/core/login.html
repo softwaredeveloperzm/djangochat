@@ -1,0 +1,70 @@
+{% extends "includes/bootstrap.html" %}
+{% load static %}
+{% block content %}
+
+<section class="container my-5">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-10">
+            <div class="card">
+                <div class="card-body bg-light">
+                    
+                    <div class="text-center mb-4">
+                        <img src="{% static 'img/send-message.png' %}" class="img-fluid rounded-circle" style="width: 60px; height: 60px;" alt="Category Image">
+                        <p class="my-3 fw-bold"> Login to interact </p>
+                    </div>
+
+               
+
+                    <form action=" {% url "user_login" %} " method="POST">
+
+                        {% csrf_token %}
+
+                        {% if messages %}
+                        <div class="alert-container">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-primary text-light"><i class="bi bi-person"></i></span>
+                                <input type="text" id="username" name="username" class="form-control" placeholder="Enter Your Username" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-primary text-light"><i class="bi bi-lock"></i></span>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Enter Your Password" required>
+                            </div>
+                        </div>
+
+                        <p class="fw-bold mb-0">
+                            Don't have an account? 
+                            <a href="{% url "register" %}" class="text-primary text-decoration-underline fw-semibold">Register</a>
+                            
+                        </p>
+                        
+
+                        <div class="text-center my-2">
+                            
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock content %}

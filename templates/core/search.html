@@ -1,0 +1,26 @@
+{% load static %}
+<div class="col-lg-4">
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <p class="fw-bold text-center">  Search to chat </p>
+
+            <input class="form-control" type="text" placeholder="Search a user" id="search">
+
+            <ul class="list-group py-2" id="results">
+                
+            </ul>
+        </div>
+
+        <div class="card-body">
+            <p>Active  <span class="fw-bold text-primary"> {{ user }} </span></p>
+        </div>
+        
+
+    </div>
+   
+</div>
+    <!-- jQuery 3.x CDN -->
+    <script src="{% static 'js/search.js' %}"></script>

@@ -1,0 +1,68 @@
+{% extends "includes/bootstrap.html" %}
+{% load static %}
+{% block content %}
+
+{% include "includes/navbar.html" %}
+<section class="container my-5 py-5">
+
+    <div class="row justify-content-center">
+       
+        {% include "core/search.html" %}
+        
+        <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="card">
+                <div class="card-header bg-white border-bottom-0">
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">
+                            <img src="{% static 'img/blank.webp' %}" 
+                                 class="img-fluid rounded-circle border" 
+                                 style="width: 60px; height: 60px;" 
+                                 alt="User Image">
+                        </div>
+                        <div>
+                            <h5 class="mb-0 fw-bold">{{ user }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" id="">
+                    <div class="justify-content-start mb-3" id="messages-list">
+                        <!-- Messages will be dynamically loaded here -->
+                    </div>
+                </div>
+
+                <div class="card-footer bg-light">
+                    <div class="d-flex w-100">
+                        <form method="post" id="task-form" data-url="{% url 'send' %}" class="w-100">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text" class="form-control" 
+                                       placeholder="Type your message" 
+                                       name="message" id="message" 
+                                       required
+                                       aria-label="Message">
+                                <input type="hidden" name="user_sender" id="user_sender" value="{{ request.user }}">
+                                <input type="hidden" name="receiver_username" id="receiver_username" value="{{ user }}">
+                                <button class="btn btn-primary my-2 px-4" type="submit">
+                                    Send
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<script src="{% static 'js/create_message.js' %}"></script>
+<script src="{% static 'js/fetch_message.js' %}"></script>
+<script src="{% static 'js/settings.js' %}"></script>
+       
+
+
+
+
+{% endblock %}
